@@ -8,7 +8,7 @@ DOWNLOAD_PATH="libs"
 
 set -x
 
-mkdir -P $DOWNLOAD_PATH
+mkdir -p $DOWNLOAD_PATH
 
 [ ! -f "$DOWNLOAD_PATH/$OPENSSL.tar.gz" ] && wget -P $DOWNLOAD_PATH "https://api.antonicnikola.com/website/files/$OPENSSL.tar.gz"
 rm -rf openssl

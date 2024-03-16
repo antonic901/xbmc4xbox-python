@@ -401,3 +401,9 @@ libs/
 bzip2/
 openssl/
 sqlite/
+BUILD/
+Release XBOX/
+Debug XBOX/
+python_nt.h
+pythonnt_rc.h
+getbuildinfo.o
