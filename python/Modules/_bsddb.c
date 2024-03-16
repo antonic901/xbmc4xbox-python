@@ -92,6 +92,7 @@
  */
 
 /* --------------------------------------------------------------------- */
+#define XBOX_NO_XBP_DEFINE
 
 #include <stddef.h>   /* for offsetof() */
 #include <Python.h>

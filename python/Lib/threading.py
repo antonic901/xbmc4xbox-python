@@ -896,8 +896,11 @@ class Thread(_Verbose):
                 # could try to acquire the lock again in the same thread, (in
                 # current_thread()), and would block.
         except KeyError:
-            if 'dummy_threading' not in _sys.modules:
-                raise
+            # XBMC Patch, because we are shutting python down in the main thread, _get_ident() will return the current thread
+            # Because that thread is not added to the _active table, we will get an error. Just completely skip the check
+            #if 'dummy_threading' not in _sys.modules:
+            #    raise
+            print("")
 
     def join(self, timeout=None):
         """Wait until the thread terminates.

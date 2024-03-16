@@ -4,6 +4,10 @@
 
 /* Include nearly all Python header files */
 
+#ifndef _XBMC
+#include "xbox_dll.h"
+#endif
+
 #include "patchlevel.h"
 #include "pyconfig.h"
 #include "pymacconfig.h"

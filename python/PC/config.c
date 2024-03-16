@@ -81,7 +81,7 @@ struct _inittab _PyImport_Inittab[] = {
     {"_ast", init_ast},
 #ifdef MS_WINDOWS
 #ifndef MS_WINI64
-    {"audioop", initaudioop},
+    //{"audioop", initaudioop},
 #endif
 #endif
     {"binascii", initbinascii},
@@ -90,7 +90,7 @@ struct _inittab _PyImport_Inittab[] = {
     {"future_builtins", initfuture_builtins},
     {"gc", initgc},
 #ifndef MS_WINI64
-    {"imageop", initimageop},
+    //{"imageop", initimageop},
 #endif
     {"math", initmath},
     {"_md5", init_md5},
@@ -108,11 +108,11 @@ struct _inittab _PyImport_Inittab[] = {
     {"cStringIO", initcStringIO},
     {"cPickle", initcPickle},
 #ifdef WIN32
-    {"msvcrt", initmsvcrt},
+        //{"msvcrt", initmsvcrt},
     {"_locale", init_locale},
 #endif
     /* XXX Should _subprocess go in a WIN32 block?  not WIN64? */
-    {"_subprocess", init_subprocess},
+	//{"_subprocess", init_subprocess},
 
     {"_codecs", init_codecs},
     {"_weakref", init_weakref},
@@ -124,11 +124,11 @@ struct _inittab _PyImport_Inittab[] = {
     {"itertools", inititertools},
     {"_collections", init_collections},
     {"_symtable", init_symtable},
-    {"mmap", initmmap},
+    //{"mmap", initmmap},
     {"_csv", init_csv},
     {"_sre", init_sre},
     {"parser", initparser},
-    {"_winreg", init_winreg},
+    //{"_winreg", init_winreg},
     {"_struct", init_struct},
     {"datetime", initdatetime},
     {"_functools", init_functools},
@@ -140,12 +140,12 @@ struct _inittab _PyImport_Inittab[] = {
 
     /* CJK codecs */
     {"_multibytecodec", init_multibytecodec},
-    {"_codecs_cn", init_codecs_cn},
-    {"_codecs_hk", init_codecs_hk},
-    {"_codecs_iso2022", init_codecs_iso2022},
-    {"_codecs_jp", init_codecs_jp},
-    {"_codecs_kr", init_codecs_kr},
-    {"_codecs_tw", init_codecs_tw},
+	//{"_codecs_cn", init_codecs_cn},
+	//{"_codecs_hk", init_codecs_hk},
+	//{"_codecs_iso2022", init_codecs_iso2022},
+	//{"_codecs_jp", init_codecs_jp},
+	//{"_codecs_kr", init_codecs_kr},
+	//{"_codecs_tw", init_codecs_tw},
 
 /* tools/freeze/makeconfig.py marker for additional "_inittab" entries */
 /* -- ADDMODULE MARKER 2 -- */

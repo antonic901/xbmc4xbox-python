@@ -1163,6 +1163,10 @@ def uname():
         Entries which cannot be determined are set to ''.
 
     """
+    
+    # hardcode for xbmc4xbox
+    return 'XBMC4Xbox','','','','Xbox','x86'
+    
     global _uname_cache
     no_os_uname = 0
 

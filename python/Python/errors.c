@@ -346,7 +346,9 @@ PyErr_SetFromErrnoWithFilenameObject(PyObject *exc, PyObject *filenameObject)
             s = _sys_errlist[i];
         }
         else {
-            int len = FormatMessage(
+            int len = 0;
+#ifndef _XBOX
+            len = FormatMessage(
                 FORMAT_MESSAGE_ALLOCATE_BUFFER |
                 FORMAT_MESSAGE_FROM_SYSTEM |
                 FORMAT_MESSAGE_IGNORE_INSERTS,
@@ -358,6 +360,7 @@ PyErr_SetFromErrnoWithFilenameObject(PyObject *exc, PyObject *filenameObject)
                 (LPTSTR) &s_buf,
                 0,                      /* size not used */
                 NULL);                  /* no args */
+#endif
             if (len==0) {
                 /* Only ever seen this in out-of-mem
                    situations */
@@ -424,13 +427,14 @@ PyObject *PyErr_SetExcFromWindowsErrWithFilenameObject(
     int ierr,
     PyObject *filenameObject)
 {
-    int len;
+    int len = 0;
     char *s;
     char *s_buf = NULL; /* Free via LocalFree */
     char s_small_buf[28]; /* Room for "Windows Error 0xFFFFFFFF" */
     PyObject *v;
     DWORD err = (DWORD)ierr;
     if (err==0) err = GetLastError();
+#ifndef _XBOX
     len = FormatMessage(
         /* Error API error */
         FORMAT_MESSAGE_ALLOCATE_BUFFER |
@@ -443,6 +447,7 @@ PyObject *PyErr_SetExcFromWindowsErrWithFilenameObject(
         (LPTSTR) &s_buf,
         0,              /* size not used */
         NULL);          /* no args */
+#endif
     if (len==0) {
         /* Only seen this in out of mem situations */
         sprintf(s_small_buf, "Windows Error 0x%X", err);

@@ -9,7 +9,7 @@
 #endif /* HAVE_SYS_TYPES_H */
 
 #ifdef MS_WINDOWS
-#define fileno _fileno
+//#define fileno _fileno // XBOX
 /* can simulate truncate with Win32 API functions; see file_truncate */
 #define HAVE_FTRUNCATE
 #define WIN32_LEAN_AND_MEAN
@@ -2751,8 +2751,8 @@ int PyObject_AsFileDescriptor(PyObject *o)
 }
 
 /* From here on we need access to the real fgets and fread */
-#undef fgets
-#undef fread
+//#undef fgets // _XBOX
+//#undef fread // _XBOX
 
 /*
 ** Py_UniversalNewlineFgets is an fgets variation that understands

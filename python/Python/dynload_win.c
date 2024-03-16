@@ -246,6 +246,8 @@ dl_funcptr _PyImport_GetDynLoadFunc(const char *fqname, const char *shortname,
             PyErr_SetString(PyExc_ImportError, errBuf);
             return NULL;
         } else {
+// for now we disable version checking
+#ifndef _XBOX
             char buffer[256];
 
 #ifdef _DEBUG
@@ -266,6 +268,7 @@ dl_funcptr _PyImport_GetDynLoadFunc(const char *fqname, const char *shortname,
                 FreeLibrary(hDLL);
                 return NULL;
             }
+#endif // _XBOX
         }
         p = GetProcAddress(hDLL, funcname);
     }

@@ -922,16 +922,7 @@ open_exclusive(char *filename, mode_t mode)
     */
     int fd;
     (void) unlink(filename);
-    fd = open(filename, O_EXCL|O_CREAT|O_WRONLY|O_TRUNC
-#ifdef O_BINARY
-                            |O_BINARY   /* necessary for Windows */
-#endif
-#ifdef __VMS
-            , mode, "ctxt=bin", "shr=nil"
-#else
-            , mode
-#endif
-          );
+    fd = open(filename, O_EXCL|O_CREAT|O_WRONLY|O_TRUNC|O_BINARY, 0666); // XBOX
     if (fd < 0)
         return NULL;
     return fdopen(fd, "wb");
@@ -1036,7 +1027,7 @@ update_compiled_module(PyCodeObject *co, char *pathname)
     return 1;
 }
 
-#ifdef MS_WINDOWS
+#if defined(MS_WINDOWS) && !defined(_XBOX)
 
 /* Seconds between 1.1.1601 and 1.1.1970 */
 static __int64 secs_between_epochs = 11644473600;
@@ -1090,7 +1081,7 @@ load_source_module(char *name, char *pathname, FILE *fp)
         return NULL;
     }
 
-#ifdef MS_WINDOWS
+#if defined(MS_WINDOWS) && !defined(_XBOX)
     mtime = win32_mtime(fp, pathname);
     if (mtime == (time_t)-1 && PyErr_Occurred())
         return NULL;

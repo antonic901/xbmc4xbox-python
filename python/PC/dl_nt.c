@@ -85,9 +85,11 @@ BOOL    WINAPI  DllMain (HANDLE hInst,
         case DLL_PROCESS_ATTACH:
             PyWin_DLLhModule = hInst;
             // 1000 is a magic number I picked out of the air.  Could do with a #define, I spose...
-            LoadString(hInst, 1000, dllVersionBuffer, sizeof(dllVersionBuffer));
+            //LoadString(hInst, 1000, dllVersionBuffer, sizeof(dllVersionBuffer));
+            strcpy(dllVersionBuffer, "2.7.3"); // XBOX
 
             // and capture our activation context for use when loading extensions.
+            /*
             _LoadActCtxPointers();
             if (pfnGetCurrentActCtx && pfnAddRefActCtx)
                 if ((*pfnGetCurrentActCtx)(&PyWin_DLLhActivationContext)) {
@@ -98,11 +100,14 @@ BOOL    WINAPI  DllMain (HANDLE hInst,
                                       "activation context\n");
                     return FALSE;
                 }
+            */
             break;
 
         case DLL_PROCESS_DETACH:
+            /*
             if (pfnReleaseActCtx)
                 (*pfnReleaseActCtx)(PyWin_DLLhActivationContext);
+            */
             break;
     }
     return TRUE;
